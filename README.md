@@ -40,8 +40,8 @@ return [
 # config/packages/cube_mage_paging_seal.yaml
 cube_mage_paging_seal:
     # 自定义您希望存放临时PDF文件的路径
-    # 默认路径是: '%kernel.project_dir%/var/paging_seal'
-    pdf_path: '%kernel.project_dir%/var/cube-mage/paging-seal'
+    # 默认路径是: '%kernel.project_dir%/var/cubemage/paging-seal'
+    pdf_path: '%kernel.project_dir%/var/cubemage/paging-seal'
 
     # 设置一个全局的、默认使用的公章图片的绝对路径
     # 如果不设置，则每次调用服务时都必须提供公章图片路径
@@ -81,7 +81,7 @@ class MyPdfController extends AbstractController
     {
         // 3. 从请求中获取上传的文件
         /** @var UploadedFile|null $documentFile */
-        $documentFile = $request->files->get('document_pdf');
+        $documentFile = $request->files->get('pdf');
 
         /** @var UploadedFile|null $sealFile */
         $sealFile = $request->files->get('seal_image'); // 这是可选的公章图片
