@@ -17,8 +17,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder->getRootNode()
             ->children()
             ->scalarNode('temp_path')
+            ->defaultValue('%kernel.project_dir%/var/paging_seal')
             ->info('The directory to store temporary processed PDF files.')
-            ->defaultValue('%kernel.project_dir%/var/paging_seal') // 提供一個合理的預設值
+            ->end()
+            // 新增：讓使用者可以設定預設公章的路徑
+            ->scalarNode('default_seal_path')
+            ->defaultNull()
+            ->info('The absolute path to the default seal image.')
             ->end()
             ->end();
 

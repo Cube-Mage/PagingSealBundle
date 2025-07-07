@@ -1,5 +1,5 @@
 <?php
-// config/services.php
+// PagingSealBundle/config/services.php
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
@@ -12,11 +12,12 @@ return static function (ContainerConfigurator $container): void {
         ->autoconfigure()
     ;
 
-    // 註冊我們的核心服務
+    // 關鍵：將服務的主要ID設定為它的完整類別名稱 (FQCN)
     $services->set(PagingSealGenerator::class)
-        ->public() // 將服務設為 public，方便使用者在舊版Symfony或特殊情況下獲取
-        ->arg('$tempPath', '%cubemage_paging_seal.temp_path%'); // 綁定參數
+        ->public() // 設為 public 確保可被存取
+        ->arg('$tempPath', '%cubemage_paging_seal.temp_path%')
+        ->arg('$defaultSealPath', '%cubemage_paging_seal.default_seal_path%');
 
-    // 建立一個別名，讓使用者可以透過類別名稱直接注入
-    $services->alias(PagingSealGenerator::class, 'cubemage_paging_seal.generator');
+    // 為了兼容舊的獲取方式，我們仍然可以設定一個別名
+    $services->alias('cubemage_paging_seal.generator', PagingSealGenerator::class);
 };
