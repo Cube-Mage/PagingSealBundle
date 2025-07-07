@@ -41,7 +41,7 @@ return [
 cube_mage_paging_seal:
     # 自定义您希望存放临时PDF文件的路径
     # 默认路径是: '%kernel.project_dir%/var/paging_seal'
-    temp_path: '%kernel.project_dir%/var/my_sealed_docs'
+    pdf_path: '%kernel.project_dir%/var/cube-mage/paging-seal'
 
     # 设置一个全局的、默认使用的公章图片的绝对路径
     # 如果不设置，则每次调用服务时都必须提供公章图片路径

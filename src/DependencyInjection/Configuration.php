@@ -16,8 +16,8 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
-            ->scalarNode('temp_path')
-            ->defaultValue('%kernel.project_dir%/var/paging_seal')
+            ->scalarNode('pdf_path')
+            ->defaultValue('%kernel.project_dir%/var/cube-mage/paging-seal')
             ->info('The directory to store temporary processed PDF files.')
             ->end()
             // 新增：讓使用者可以設定預設公章的路徑

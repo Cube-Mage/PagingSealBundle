@@ -21,7 +21,7 @@ class CubeMagePagingSealExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('cubemage_paging_seal.temp_path', $config['temp_path']);
+        $container->setParameter('cubemage_paging_seal.pdf_path', $config['pdf_path']);
         $container->setParameter('cubemage_paging_seal.default_seal_path', $config['default_seal_path']);
     }
 

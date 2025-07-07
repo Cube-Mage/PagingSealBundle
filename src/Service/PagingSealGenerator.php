@@ -11,11 +11,11 @@ use setasign\Fpdi\Tcpdf\Fpdi;
 class PagingSealGenerator
 {
     public function __construct(
-        private string $tempPath, // 透過依賴注入設定臨時檔案儲存路徑
+        private string $pdfPath, // 透過依賴注入設定臨時檔案儲存路徑
         private ?string $defaultSealPath = null // 可選的預設公章路徑
     ) {
-        if (!is_dir($this->tempPath)) {
-            mkdir($this->tempPath, 0775, true);
+        if (!is_dir($this->pdfPath)) {
+            mkdir($this->pdfPath, 0775, true);
         }
     }
 
@@ -60,7 +60,7 @@ class PagingSealGenerator
         // 如果只有一頁或沒有頁面，則不蓋章，直接返回
         if ($totalPages < 2) {
             // 在這種情況下，我們可以選擇返回原始檔案或一個副本
-            $outputPath = $this->tempPath . '/' . bin2hex(random_bytes(20)) . '.pdf';
+            $outputPath = $this->pdfPath . '/' . bin2hex(random_bytes(20)) . '.pdf';
             copy($sourcePdfPath, $outputPath);
             return $outputPath;
         }
@@ -117,7 +117,7 @@ class PagingSealGenerator
 
         // 6. 儲存檔案到由設定檔定義的臨時目錄
         $outputFileName = 'sealed-' . bin2hex(random_bytes(16)) . '.pdf';
-        $outputPath = $this->tempPath . '/' . $outputFileName;
+        $outputPath = $this->pdfPath . '/' . $outputFileName;
         $pdf->Output($outputPath, 'F');
 
         return $outputPath;
